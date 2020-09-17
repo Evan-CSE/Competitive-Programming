@@ -16,7 +16,7 @@
 #define         pb              push_back
 #define         MAX             1000000
 #define         fast            ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-
+#define         endl            "\n"
 
 
 using namespace std;
@@ -111,5 +111,4 @@ int main()
     fast;
     return 0;
 }
-
 
