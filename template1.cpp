@@ -53,6 +53,15 @@ bool isPowerOfTwo(ll a)
 
 
 
+void Swap(ll &a, ll &b)
+{
+
+    a^=b;
+    b^=a;
+    a^=b;
+}
+
+
 
 ll gcd(ll a, ll b)
 {
@@ -62,8 +71,10 @@ ll gcd(ll a, ll b)
         b = abs(b);
     }
     if(a<b)
-        swap(a,b);
-    if(a%b==0 || b==0)
+        Swap(a,b);
+    if(b==0)
+        return a;
+    if(a%b==0)
         return b;
     else
         return gcd(b,a%b);
