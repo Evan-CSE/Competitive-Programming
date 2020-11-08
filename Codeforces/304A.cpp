@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -117,21 +118,26 @@ bool isPowerOfX(ll x, ll value)
 
 
 
-int main()
+
+
+bool perfect(int value, int rng)
 {
-    fast;
-    int t;
-    cin>>t;
-    while(t--)
-    {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
-    }
-    return 0;
+	return ((int)sqrt(value)*(int)sqrt(value))==value && value<=rng*rng;
 }
 
+
+
+
+int main()
+{
+	int n,cnt = 0;
+	cin>>n;
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=i;j<=n;j++)
+			if(perfect((i*i)+(j*j),n))
+				cnt++;
+	}
+	cout<<cnt<<endl;
+	return 0;
+}

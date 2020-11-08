@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -124,14 +125,9 @@ int main()
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
+    	ll n;
+    	cin>>n;
+    	cout<<"0 "<<n<<endl;
     }
     return 0;
 }
-

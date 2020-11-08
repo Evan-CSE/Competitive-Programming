@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -17,7 +18,7 @@
 #define         MAX             1000000
 #define         fast            ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define         endl            "\n"
-
+#define 		MOD 			1073741824
 
 using namespace std;
 
@@ -117,21 +118,45 @@ bool isPowerOfX(ll x, ll value)
 
 
 
-int main()
+
+
+int d(int prod)
 {
-    fast;
-    int t;
-    cin>>t;
-    while(t--)
-    {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
-    }
-    return 0;
+	if(prod==1)
+		return 1;
+	int res = 1;
+	for(int i=2;i*i<=prod;i++)
+	{
+		int pow = 0; 
+		if(prod%i==0)
+		{
+			while(prod%i==0)
+				prod/=i,pow++;
+			res*=(pow+1);
+		}
+	}
+	if(prod>1)
+		res*=2;
+	return res;
 }
 
+
+int main()
+{
+	int a,b,c,cnt = 0;
+	cin>>a>>b>>c;
+	for(int i=1;i<=a;i++)
+	{
+		for(int j=1;j<=b;j++)
+		{
+			for(int k=1;k<=c;k++)
+			{
+				cnt = (cnt%MOD) + (d(i*j*k)%MOD);
+				//cout<<" .... "<<cnt<<" --> "<<d(i*j*k)<<endl;
+			}
+
+		}
+	}
+	cout<<cnt%MOD<<endl;
+	return 0;
+}

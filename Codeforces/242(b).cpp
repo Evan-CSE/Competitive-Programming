@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -115,23 +116,36 @@ bool isPowerOfX(ll x, ll value)
 
 
 
+bool srt(pair<int,pair<int,int>>p1,pair<int,pair<int,int>>p2)
+{
+	if(p1.second.first!=p2.second.first)
+		return p1.second.first<p2.second.first;
+	return p1.second.second>p2.second.second;
+}
+
 
 
 int main()
 {
-    fast;
-    int t;
-    cin>>t;
-    while(t--)
-    {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
-    }
-    return 0;
+	int n;
+	cin>>n;
+	vector<pair<int,pair<int,int>>>v(n);
+	for(int i=0;i<n;i++){
+			v[i].first = i;
+			cin>>v[i].second.first>>v[i].second.second;
+		}
+	sort(v.begin(),v.end(),srt);
+	bool f  = true;
+	int indx = v[0].first + 1;
+	for(int i=0;i<n;i++){
+		 if(v[i].second.second<=v[0].second.second)
+		 	continue;
+		 else
+		 {
+		 	f = false;
+		 	break;
+		 }
+	}
+	f?cout<<indx<<"\n" : cout<<"-1\n";
+	return 0;
 }
-

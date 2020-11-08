@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -117,6 +118,36 @@ bool isPowerOfX(ll x, ll value)
 
 
 
+bool Vs[222222];
+vector<int>v[333333];
+
+ll bfs(int src)
+{
+	queue<int>q;
+	q.push(src);
+	ll res = 0;
+	Vs[src] = true;
+	while(!q.empty())
+	{
+		int tmp = q.front();
+		q.pop();
+		Vs[tmp] = true;
+		int l = v[tmp].size();
+		for(int i=0;i<l;i++)
+		{
+			if(!Vs[v[tmp][i]])
+			{
+				q.push(v[tmp][i]);
+				res++;
+			}
+		}
+	}
+
+
+	return res;
+}
+
+
 int main()
 {
     fast;
@@ -124,14 +155,30 @@ int main()
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
+    	ll n;
+    	cin>>n;
+    	memset(Vs,false,sizeof Vs);
+    	for(int i=0;i<333333;i++)v[i].clear();
+    	for(int i=0;i<n-1;i++)
+    	{
+    		ll x;
+    		cin>>x;
+    		v[x].pb(i+2);
+    	}
+
+    	std::vector<ll> connectedTo1;
+    	int l = v[1].size();
+    	ll depth = -1;
+    	for(int i=0;i<l;i++)
+    	{
+    		ll res = bfs(v[1][i]);
+    		if(res>0)
+    			res++;
+    		depth = max(depth,res);
+    	}
+
+
+    	cout<<depth+n+1<<endl;
     }
     return 0;
 }
-

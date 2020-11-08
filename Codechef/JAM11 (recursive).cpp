@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -113,25 +114,28 @@ bool isPowerOfX(ll x, ll value)
     return true;
 }
 
+ll dp[100010];
 
 
+ll process(int value)
+{
+	if(dp[value]!=-1)
+		return dp[value];
+	if(value==0)
+		return dp[value] = 1;
+	if(value<=2)
+		return dp[value] = value;
+	return dp[value] = (process(value-1)+ process(value-2) + process(value-3)) % 1000000007;
+}
 
 
 int main()
 {
     fast;
-    int t;
+    int t,n;
+    memset(dp,-1,sizeof dp);
+    process(100000);
     cin>>t;
-    while(t--)
-    {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
-    }
+    while(t--)cin>>n,cout<<dp[n]<<endl;
     return 0;
 }
-

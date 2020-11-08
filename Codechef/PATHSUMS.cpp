@@ -1,8 +1,11 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
                 JKKNIU
 */
+
+
 
 
 #include<bits/stdc++.h>
@@ -116,22 +119,62 @@ bool isPowerOfX(ll x, ll value)
 
 
 
+vector<int>graph[500];
+int level[500];
+bool Visit[500];
+
+void bfs(int src)
+{
+    
+    level[src] = 1;
+    queue<int>q;
+    q.push(src);
+    Visit[src] = true;
+    while(!q.empty())
+    {
+        int tmp = q.front();
+        q.pop();
+        for(auto x:graph[tmp])
+        {
+            if(!Visit[x])
+            {
+                //cout<<tmp<<" "<<level[tmp]<<" "<<x<<endl;
+                level[x] = (level[tmp]==1?2:1);
+                Visit[x] = true;
+                q.push(x);
+            }
+        }
+    }
+}
+
+
+
 
 int main()
 {
-    fast;
     int t;
     cin>>t;
     while(t--)
     {
-        int n;
+    	int n;
         cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
+        for(int i=0;i<500;i++)graph[i].clear();
+        memset(Visit,false,sizeof Visit);
+        memset(level,0,sizeof level);
+        rep(i,n-1)
+        {
+            int u,v;
+            cin>>u>>v;
+            graph[u].pb(v);
+            graph[v].pb(u);
+        }
+        bfs(1);
+        for(int i=1;i<=n;i++)
+            if(!Visit[i])bfs(i);
+        for(int i=1;i<=n;i++)
+            cout<<level[i]<<" ";
+        cout<<endl;
     }
+
     return 0;
 }
-

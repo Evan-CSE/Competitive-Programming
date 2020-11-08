@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -117,21 +118,65 @@ bool isPowerOfX(ll x, ll value)
 
 
 
+
+ll dp[222222];
+int l;
+
+
+
+
+
+bool diffSign(ll a, ll b)
+{
+	return (a>=0 && b<0) || (a<0 && b>=0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ll Find(vector<ll>&v,int indx,int indx2, int limit)
+{
+	if(indx>=limit-1){
+		l = limit;
+		return dp[limit-1] = 1;
+	}
+	if(!diffSign(v[indx],v[indx+1]))
+	{
+		l = indx + 1;
+		return dp[indx] = 1;
+	}
+	
+	return dp[indx]+=Find(v,indx+1,indx+2,limit);
+}
+
+
+
 int main()
 {
-    fast;
     int t;
     cin>>t;
     while(t--)
     {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
+    	int n;
+    	cin>>n;
+    	vector<ll>v(n);
+    	rep(i,n)cin>>v[i],dp[i] = 1;
+       	for(int i=0;i<n;)
+    	{
+    		Find(v,i,i+1,n);
+  		    i = l;
+    	}
+    	for(int i=0;i<n;i++)
+    		cout<<dp[i]<<" ";
+    	cout<<endl;
     }
     return 0;
 }
-

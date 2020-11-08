@@ -115,11 +115,15 @@ bool isPowerOfX(ll x, ll value)
 
 
 
+bool isPrefectSquare(ll value)
+{
+    return (ll)sqrtl(value)*(ll)sqrtl(value)==value;
+}
+
 
 
 int main()
 {
-    fast;
     return 0;
 }
 

@@ -1,3 +1,4 @@
+
 /**
         Bismilla- hir rahma-nir rahi-m
     @uthor Md Hasibur Rahman (Evan)
@@ -115,23 +116,40 @@ bool isPowerOfX(ll x, ll value)
 
 
 
+int move(int r, int c)
+{
+	int res = 0;
+	if(r+2<=8 && c+1<=8)
+		res++;
+	if(r+2<=8 && c-1>=1)
+		res++;
+	if(c+2<=8 && r+1<=8)
+		res++;
+	if(c+2<=8 && r-1>=1)
+		res++;
+	if(r-2>=1 && c+1<=8)
+		res++;
+	if(r-2>=1 && c-1>=1)
+		res++;
+	if(c-2>=1 && r+1<=8)
+		res++;
+	if(c-2>=1 && r-1>=1)
+		res++;
+	return res;
+}
+
 
 
 int main()
 {
     fast;
-    int t;
-    cin>>t;
-    while(t--)
+    int test;
+    cin>>test;
+    for(int t=1;t<=test;t++)
     {
-        int n;
-        cin>>n;
-        vector<int>v(n);
-        map<int,int>mp;
-        bool flag = true;
-        rep(i,n){cin>>v[i];if((i+1)%v[i]!=0)flag = false;}
-        flag?cout<<"YES\n":cout<<"NO\n";
+    	int r,c;
+    	cin>>r>>c;
+    	cout<<"Case "<<t<<": "<<move(r,c)<<endl;
     }
     return 0;
 }
-
